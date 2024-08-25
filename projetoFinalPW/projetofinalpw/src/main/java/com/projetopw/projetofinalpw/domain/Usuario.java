@@ -2,6 +2,7 @@ package com.projetopw.projetofinalpw.domain;
 
 import java.util.List;
 
+import com.projetopw.projetofinalpw.domain.generics.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +13,8 @@ import org.hibernate.annotations.UuidGenerator;
 @AllArgsConstructor
 @Entity
 @Data
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
-    String senha;
+public class Usuario extends AbstractEntity {
+
     String nome;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "endereco_id")

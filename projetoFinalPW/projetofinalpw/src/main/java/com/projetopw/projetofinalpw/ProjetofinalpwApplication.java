@@ -1,16 +1,21 @@
 package com.projetopw.projetofinalpw;
 
+import com.projetopw.projetofinalpw.core.security.RsaKeyProperties;
 import com.projetopw.projetofinalpw.domain.Endereco;
+import com.projetopw.projetofinalpw.domain.SecurityUser;
 import com.projetopw.projetofinalpw.domain.Usuario;
+import com.projetopw.projetofinalpw.repository.SecurityUserRepository;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-//@EnableConfigurationProperties(RsaKeyProperties.class)
+@EnableConfigurationProperties(RsaKeyProperties.class)
 public class ProjetofinalpwApplication {
 
 	public static void main(String[] args) {
@@ -22,17 +27,15 @@ public class ProjetofinalpwApplication {
 		return new ModelMapper();
 	};
 
-//		@Autowired
-//		SecurityUserRerpository securityUserRerpository;
-//
-//		@Autowired
-//		BCryptPasswordEncoder encoder;
+		@Autowired
+		SecurityUserRepository securityUserRerpository;
+		@Autowired
+		BCryptPasswordEncoder encoder;
+
 	@PostConstruct
 	public void started() {
 		Usuario u = new Usuario();
-
 		u.setNome("Joao");
-		u.setSenha("password");
 
 
 		Endereco e = new Endereco();
@@ -45,11 +48,11 @@ public class ProjetofinalpwApplication {
 
 		u.setEndereco(e);
 
-//		SecurityUser securityUser = new SecurityUser();
-//		securityUser.setPessoa(p);
-//		securityUser.setUsername("admin");
-//		securityUser.setPassword(encoder.encode("admin"));
-//
-//		securityUserRerpository.save(securityUser);
+		SecurityUser securityUser = new SecurityUser();
+		securityUser.setUsuario(u);
+		securityUser.setUsername("admin");
+		securityUser.setPassword(encoder.encode("admin"));
+
+		securityUserRerpository.save(securityUser);
 	}
 }

@@ -75,6 +75,7 @@ public class PedidoController {
 
     private PedidoResponseDTO convertToDto(Pedido created){
         PedidoResponseDTO pedidoResponseDTO = mapper.map(created, PedidoResponseDTO.class);
+        pedidoResponseDTO.addLinks(created);
         return pedidoResponseDTO;
     }
 

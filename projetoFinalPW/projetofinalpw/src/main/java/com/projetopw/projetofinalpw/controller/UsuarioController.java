@@ -73,6 +73,7 @@ public class UsuarioController {
 
     private UsuarioResponseDTO convertToDto(Usuario created){
         UsuarioResponseDTO usuarioResponseDTO = mapper.map(created, UsuarioResponseDTO.class);
+        usuarioResponseDTO.addLinks(created);
         return usuarioResponseDTO;
     }
 

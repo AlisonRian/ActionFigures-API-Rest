@@ -3,6 +3,7 @@ package com.projetopw.projetofinalpw.controller;
 import com.projetopw.projetofinalpw.domain.Endereco;
 import com.projetopw.projetofinalpw.dto.EnderecoRequestDTO;
 import com.projetopw.projetofinalpw.dto.EnderecoResponseDTO;
+import com.projetopw.projetofinalpw.dto.FigureResponseDTO;
 import com.projetopw.projetofinalpw.services.EnderecoService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -69,6 +70,7 @@ public class EnderecoController {
 
     private EnderecoResponseDTO convertToDto(Endereco created){
         EnderecoResponseDTO enderecoResponseDTO = mapper.map(created, EnderecoResponseDTO.class);
+        enderecoResponseDTO.addLinks(created);
         return enderecoResponseDTO;
     }
 

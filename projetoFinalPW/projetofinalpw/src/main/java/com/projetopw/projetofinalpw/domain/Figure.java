@@ -1,5 +1,6 @@
 package com.projetopw.projetofinalpw.domain;
 
+import com.projetopw.projetofinalpw.domain.generics.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Data
-public class Figure {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+public class Figure extends AbstractEntity {
     String informacao;
     String ano;
     Float valor;

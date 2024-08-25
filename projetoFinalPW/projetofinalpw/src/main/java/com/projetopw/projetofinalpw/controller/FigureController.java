@@ -66,7 +66,10 @@ public class FigureController {
     }
 
     private FigureResponseDTO convertToDto(Figure created){
-        return mapper.map(created, FigureResponseDTO.class);
+        FigureResponseDTO figureResponseDTO = mapper.map(created, FigureResponseDTO.class);
+        figureResponseDTO.addLinks(created);
+        return figureResponseDTO;
+
     }
 
     private Figure convertToEntity(FigureRequestDTO figureRequestDTO) {

@@ -1,5 +1,6 @@
 package com.projetopw.projetofinalpw.domain;
 
+import com.projetopw.projetofinalpw.domain.generics.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Endereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+public class Endereco extends AbstractEntity {
     String cep;
     int numero;
     String rua;
